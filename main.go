@@ -28,7 +28,8 @@ func main() {
 
 	e := echo.New()
 
-	e.POST("/books/create", CreateBook)
+	//デバッグ用??なのでだめ
+	//e.POST("/books/create", CreateBook)
 
 	e.Start(":1323")
 }
