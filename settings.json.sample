@@ -1,0 +1,6 @@
+{
+  "dialect":"mysql",
+  "user":"user",
+  "password":"password",
+  "dbName":"dbName"
+}
