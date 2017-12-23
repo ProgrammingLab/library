@@ -42,8 +42,6 @@ func connectDB() error {
 	args := fmt.Sprintf("%v:%v@/%v?charset=utf8&parseTime=True&loc=Local", setting.User, setting.Password, setting.DBName)
 	db, dbErr = gorm.Open("mysql", args)
 
-	db.CreateTable(Book{})
-
 	return dbErr
 }
 

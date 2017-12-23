@@ -2,6 +2,7 @@ package main
 
 import (
 	"strings"
+	"strconv"
 	"net/http"
 	"io/ioutil"
 	"encoding/json"
@@ -10,6 +11,10 @@ import (
 )
 
 type googleBook struct {
+	VolumeInfo volumeInfo `json:"volumeInfo"`
+}
+
+type volumeInfo struct {
 	Title               string               `json:"title"`
 	Authors             []string             `json:"authors"`
 	PublishedDate       string               `json:"publishedDate"`
@@ -28,6 +33,9 @@ type industryIdentifier struct {
 
 func CreateBook(c echo.Context) error {
 	isbn := c.FormValue("isbn")
+	if exists(isbn) {
+		return nil
+	}
 
 	content, err := getBook(isbn)
 	if err != nil {
@@ -42,7 +50,8 @@ func CreateBook(c echo.Context) error {
 
 	response := &googleBookResponse{}
 	json.Unmarshal(content, response)
-	if len(response.Items) == 0 {
+
+	if len(response.Items) == 0 || len(response.Items[0].VolumeInfo.Title) == 0 {
 		response := errorResponse{
 			Code:    http.StatusNotFound,
 			Message: "book not found",
@@ -51,7 +60,7 @@ func CreateBook(c echo.Context) error {
 		return nil
 	}
 
-	db.NewRecord(toBook(&response.Items[0]))
+	db.Create(toBook(&response.Items[0].VolumeInfo))
 
 	return nil
 }
@@ -70,9 +79,9 @@ func getBook(isbn string) ([]byte, error) {
 	return content, nil
 }
 
-func toBook(book *googleBook) Book {
+func toBook(volume *volumeInfo) *Book {
 	var isbn, isbn10 string
-	for _, identifier := range book.IndustryIdentifiers {
+	for _, identifier := range volume.IndustryIdentifiers {
 		switch identifier.Type {
 		case "ISBN_10":
 			isbn10 = identifier.Identifier
@@ -81,14 +90,20 @@ func toBook(book *googleBook) Book {
 		}
 	}
 
-	authors := strings.Join(book.Authors, "/")
-	return Book{
-		Title:       book.Title,
+	authors := strings.Join(volume.Authors, "/")
+	return &Book{
+		Title:       volume.Title,
 		ISBN:        isbn,
 		State:       "部室",
 		Author:      authors,
-		ReleaseDate: book.PublishedDate,
+		ReleaseDate: volume.PublishedDate,
 		ISBN10:      isbn10,
-		Page:        string(book.PageCount),
+		Page:        strconv.Itoa(volume.PageCount),
 	}
+}
+
+func exists(isbn13 string) bool {
+	out := &Book{}
+	db.Find(out, &Book{ISBN: isbn13})
+	return out.ID != 0
 }

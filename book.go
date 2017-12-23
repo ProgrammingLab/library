@@ -1,7 +1,7 @@
 package main
 
 type Book struct {
-	ID          int    `gorm:"primary_key"`
+	ID          int    `gorm:"type:int; primary_key;"`
 	Title       string `gorm:"type:varchar(128)"`
 	ISBN        string `gorm:"column:isbn; type:varchar(128)"`
 	State       string `gorm:"type:varchar(128)"`
