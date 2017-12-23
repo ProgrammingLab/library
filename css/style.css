@@ -1,147 +1,135 @@
-@charset "UTF-8";
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
+@charset "UTF-8"; /* http://meyerweb.com/eric/tools/css/reset/
 v2.0 | 20110126
 License: none (public domain)
 */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-margin: 0;
-padding: 0;
-border: 0;
-font-size: 100%;
-font: inherit;
-vertical-align: baseline;
-}
-/*  HTML5 display-role reset for older browsers 
+/*  HTML5 display-role reset for older browsers
 */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-display: block;
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
 }
+
 body {
-line-height: 1;
+    line-height: 1;
 }
+
 ol, ul {
-list-style: none;
+    list-style: none;
 }
+
 blockquote, q {
-quotes: none;
+    quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-content: '';
-content: none;
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
 }
+
 table {
-border-collapse: collapse;
-border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 8pt;
+    }
 }
 
 .container {
-  max-width: 1000px;
-  margin: 180px auto 0;
-  padding: 0 20px;
+    max-width: 1000px;
+    margin: 8rem auto 0;
+    padding: 0 20px;
 }
 
 .header-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0.5rem;
 }
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #383838;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #383838;
 }
 
 input {
-  width: 100%;
-  color: white;
-  padding: 1vw;
-  font-size: 2rem;
-  box-sizing: border-box;
-  margin: 10px auto;
-  border-color: #757575;
-  border-width: 0 0 2px;
-  background: none;
-  transition-duration: 0.4s;
+    width: 100%;
+    color: white;
+    padding: 10px;
+    font-size: 2rem;
+    box-sizing: border-box;
+    margin: 10px auto;
+    border-color: #757575;
+    border-width: 0 0 2px;
+    background: none;
+    transition-duration: 0.4s;
 }
 
 input:focus {
-  outline: none;
-  color: #222;
-  background-color: #ccc;
-  transition-duration: 0.4s;
+    outline: none;
+    color: #222;
+    background-color: #ccc;
+    transition-duration: 0.4s;
 }
 
 ul {
-  width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 li {
-  display: block;
-  margin: 42px 0;
+    display: block;
+    margin: 1.6rem 0;
 }
 
 .title {
-  font-size: 2rem;
-  margin-bottom: 10px;
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
 .author {
-  float: left;
-  margin-bottom: 10px;
+    float: left;
+    margin-bottom: 10px;
 }
 
 .author:after {
-  content: "　――　";
-  letter-spacing: -2px;
+    content: "　――　";
+    letter-spacing: -2px;
 }
 
 .publisher {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .isbn {
-  font-size: 1rem;
-  color: #aaa;
-  font-family: monaco;
-  clear: both;
+    font-size: 1rem;
+    color: #aaa;
+    font-family: monaco;
+    clear: both;
 }
 
 .isbn:before {
-  content: "ISBN13:"
-}
-
-.price {
-  display: none;
-  font-size: 2.4rem;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-.price:after {
-  content: "円";
-  font-size: 1rem;
+    content: "ISBN:"
 }
 
 .hidden {
-  display: none;
+    display: none;
+}
+
+.not-found {
+    width: 100%;
 }
