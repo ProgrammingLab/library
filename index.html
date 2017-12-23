@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="utf8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>部室にある本を検索できるやつ(仮) - ProLab</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <header>
-    <div class="header-container">
-      <input id="search-input" type="text" placeholder="キーワードを入れてね">
-    </div>
-  </header>
-  <div class="container">
-    <ul>
-      <li id="row-template"> 
-        <div class="title"></div>
-        <div class="author"></div>
-        <div class="publisher"></div>
-        <div class="isbn"></div>
-        <div class="price"></div>
-      </li>
-    </ul>
-  </div>
-  <script src="js/search.js"></script>
-</body>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>部室の本を検索できるやつ(仮) - ProLab</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <header>
+            <div class="header-container">
+                <input id="search-input" type="text" placeholder="検索" autofocus>
+            </div>
+        </header>
+        <div class="container">
+            <ul id="books-list">
+                <li id="row-template">
+                    <div class="title"></div>
+                    <div class="author"></div>
+                    <div class="publisher"></div>
+                    <div class="isbn"></div>
+                </li>
+            </ul>
+            <img src="not-found.png" id="not-found" class="not-found hidden">
+        </div>
+        <script src="js/search.js"></script>
+    </body>
 </html>
